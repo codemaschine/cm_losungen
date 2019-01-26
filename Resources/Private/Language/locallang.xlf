@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-11-24T23:02:11Z" product-name="cm_losungen">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_cmlosungen_domain_model_losung">
+				<source>Losung</source>
+			</trans-unit>
+			<trans-unit id="tx_cmlosungen_domain_model_losung.datum">
+				<source>Datum</source>
+			</trans-unit>
+			<trans-unit id="tx_cmlosungen_domain_model_losung.wtag">
+				<source>Wochentag</source>
+			</trans-unit>
+			<trans-unit id="tx_cmlosungen_domain_model_losung.sonntag">
+				<source>Sonntagstext</source>
+			</trans-unit>
+			<trans-unit id="tx_cmlosungen_domain_model_losung.losungstext">
+				<source>Losungstext</source>
+			</trans-unit>
+			<trans-unit id="tx_cmlosungen_domain_model_losung.losungsvers">
+				<source>Losungsvers</source>
+			</trans-unit>
+			<trans-unit id="tx_cmlosungen_domain_model_losung.lehrtext">
+				<source>Lehrtext</source>
+			</trans-unit>
+			<trans-unit id="tx_cmlosungen_domain_model_losung.lehrvers">
+				<source>Lehrvers</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_cmlosungen_domain_model_importfile">
+				<source>Datei hochladen</source>
+			</trans-unit>
+			<trans-unit id="tx_cmlosungen_domain_model_importfile.src">
+				<source>Datei</source>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

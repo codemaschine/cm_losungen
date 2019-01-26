@@ -1,0 +1,39 @@
+<f:layout name="Default" />
+
+
+<f:section name="main">
+
+<h2>Gottes Wort für {losung.wtag}, {losung.datum -> f:format.date(format: 'd.m.Y')}</h2>
+
+<f:if condition="{wochenversanzeigen}">
+  <div class="sonntag">
+    {losung.sonntag}
+  </div>
+</f:if>
+
+<div class="losungstext">
+  <div class="text">
+    {losung.losungstext}
+    <span class="vers">
+        ({losung.losungsvers})
+    </span>
+  </div>
+</div>
+
+<f:if condition="{lehrtextanzeigen}">
+  <div class="lehrtext">
+    <div class="text">
+      {losung.lehrtext}
+        <span class="vers">
+            ({losung.lehrvers})
+        </span>
+    </div>
+  </div>
+</f:if>
+
+<div class="copyright">
+    &copy; Evangelische Brüder-Unität – Herrnhuter Brüdergemeine<br>
+    <a href="http://www.losungen.de/" target="_blank">www.losungen.de</a> -
+    Deutsche Bibelgesellschaft <a href="http://www.die-bibel.de/" target="_blank">www.die-bibel.de</a>
+</div>
+</f:section>

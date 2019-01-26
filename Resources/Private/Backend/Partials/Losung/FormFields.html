@@ -1,0 +1,51 @@
+<label for="datum">
+	<f:translate key="tx_cmlosungen_domain_model_losung.datum" /> <span class="required">(required)</span>
+</label><br />
+	<f:form.textfield name="losung[datum][date]"  value="{losung.datum->f:format.date(format: 'd.m.Y')}" id="datum" /><br />
+  <f:form.hidden name="losung[datum][dateFormat]" value="d.m.Y"/>
+<label for="wtag">
+	<f:translate key="tx_cmlosungen_domain_model_losung.wtag" />
+</label><br />
+	<f:form.textfield property="wtag" /><br />
+<label for="sonntag">
+	<f:translate key="tx_cmlosungen_domain_model_losung.sonntag" />
+</label><br />
+	<f:form.textfield property="sonntag" /><br />
+<label for="losungstext">
+	<f:translate key="tx_cmlosungen_domain_model_losung.losungstext" /> <span class="required">(required)</span>
+</label><br />
+	<f:form.textarea property="losungstext" cols="40" rows="15" /><br />
+<label for="losungsvers">
+	<f:translate key="tx_cmlosungen_domain_model_losung.losungsvers" /> <span class="required">(required)</span>
+</label><br />
+	<f:form.textfield property="losungsvers" /><br />
+<label for="lehrtext">
+	<f:translate key="tx_cmlosungen_domain_model_losung.lehrtext" />
+</label><br />
+	<f:form.textarea property="lehrtext" cols="40" rows="15" /><br />
+<label for="lehrvers">
+	<f:translate key="tx_cmlosungen_domain_model_losung.lehrvers" />
+</label><br />
+	<f:form.textfield property="lehrvers" /><br />
+  
+  
+<script type="text/javascript">
+
+var datumLabel = "{f:translate(key: 'tx_cmlosungen_domain_model_losung.datum')}";
+
+//<![CDATA[
+var datumfield = new Ext.form.DateField({
+    applyTo: 'datum', // <-- here you say where it must be rendered
+    fieldLabel: datumLabel,    
+    format: 'd.m.Y',
+    showToday: false,
+    //width: '80px',
+    //value: new Date(), 
+    //minValue: '02/01/2009',           <---- The minimum allowed date
+    //maxValue: '31/01/2009',           <---- The maximum allowed date
+    allowBlank: false,
+    editable: false,
+    anchor : '32%'
+});
+
+</script>

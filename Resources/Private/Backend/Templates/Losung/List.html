@@ -1,0 +1,41 @@
+{namespace core=TYPO3\CMS\Core\ViewHelpers}
+
+<f:layout name="Default" />
+
+<f:section name="content">
+<h1>Losungen</h1>
+
+<f:flashMessages />
+
+<f:widget.paginate objects="{losungs}" as="losungsPage" configuration="{itemsPerPage: 50, insertAbove: 1, insertBelow: 1}">
+  <table  class="tx_cmlosungen" >
+  	<tr>
+  		<th style="width: 100px;"><f:translate key="tx_cmlosungen_domain_model_losung.datum" /></th>
+  		<th><f:translate key="tx_cmlosungen_domain_model_losung.wtag" /></th>
+  		<th><f:translate key="tx_cmlosungen_domain_model_losung.sonntag" /></th>
+  		<th><f:translate key="tx_cmlosungen_domain_model_losung.losungstext" /></th>
+  		<th><f:translate key="tx_cmlosungen_domain_model_losung.losungsvers" /></th>
+  		<th><f:translate key="tx_cmlosungen_domain_model_losung.lehrtext" /></th>
+  		<th><f:translate key="tx_cmlosungen_domain_model_losung.lehrvers" /></th>
+  		<th> </th>
+  		<th> </th>
+  	</tr>
+  
+  	<f:for each="{losungsPage}" as="losung">
+  		<tr>
+  			<td>{losung.datum -> f:format.date(format: 'd.m.Y')}</td>
+  			<td>{losung.wtag}</td>
+  			<td>{losung.sonntag}</td>
+  			<td>{losung.losungstext -> f:format.crop(maxCharacters: 30)}</td>
+  			<td>{losung.losungsvers}</td>
+  			<td>{losung.lehrtext -> f:format.crop(maxCharacters: 30)}</td>
+  			<td>{losung.lehrvers}</td>
+  			<td><f:link.action action="edit" arguments="{losung: losung}" title="Bearbeiten"><core:icon size="small" identifier="actions-document-open" /></f:link.action></td>
+        <td><f:link.action action="delete" arguments="{losung: losung}" title="Löschen" onclick="return confirm('Wirklich löschen?');"><core:icon size="small" identifier="actions-edit-delete" /></f:link.action></td>
+  		</tr>
+  	</f:for>
+  </table>
+</f:widget.paginate>
+
+<f:link.action action="new">Neue Losung</f:link.action>
+</f:section>

@@ -1,0 +1,28 @@
+<label for="datum">
+	<f:translate key="tx_cmlosungen_domain_model_losung.datum" /> <span class="required">(required)</span>
+</label><br />
+	<f:form.textfield property="datum"  value="{losung.datum->f:format.date()}" /><br />
+<label for="wtag">
+	<f:translate key="tx_cmlosungen_domain_model_losung.wtag" />
+</label><br />
+	<f:form.textfield property="wtag" /><br />
+<label for="sonntag">
+	<f:translate key="tx_cmlosungen_domain_model_losung.sonntag" />
+</label><br />
+	<f:form.textfield property="sonntag" /><br />
+<label for="losungstext">
+	<f:translate key="tx_cmlosungen_domain_model_losung.losungstext" /> <span class="required">(required)</span>
+</label><br />
+	<f:form.textarea property="losungstext" cols="40" rows="15" /><br />
+<label for="losungsvers">
+	<f:translate key="tx_cmlosungen_domain_model_losung.losungsvers" /> <span class="required">(required)</span>
+</label><br />
+	<f:form.textfield property="losungsvers" /><br />
+<label for="lehrtext">
+	<f:translate key="tx_cmlosungen_domain_model_losung.lehrtext" />
+</label><br />
+	<f:form.textarea property="lehrtext" cols="40" rows="15" /><br />
+<label for="lehrvers">
+	<f:translate key="tx_cmlosungen_domain_model_losung.lehrvers" />
+</label><br />
+	<f:form.textfield property="lehrvers" /><br />

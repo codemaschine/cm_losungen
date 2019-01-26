@@ -1,0 +1,29 @@
+<T3DataStructure>
+  <meta>
+        <langDisable>1</langDisable>
+  </meta>
+      <ROOT>
+        <type>array</type>
+        <el>
+          <settings.wochenversanzeigen>
+           	 <TCEforms>
+              <label>Wochentext anzeigen?</label>
+              <config>
+                <type>check</type>
+                
+              </config>
+            </TCEforms>
+          </settings.wochenversanzeigen>
+          <settings.lehrtextanzeigen>
+           	 <TCEforms>
+              <label>Lehrtext anzeigen?</label>
+              <config>
+                <type>check</type>
+                
+              </config>
+            </TCEforms>
+          </settings.lehrtextanzeigen>
+        </el>
+      </ROOT>
+      
+</T3DataStructure>

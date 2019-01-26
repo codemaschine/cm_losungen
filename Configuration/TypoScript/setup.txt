@@ -1,0 +1,26 @@
+plugin.tx_cmlosungen {
+	view {
+		templateRootPaths = {$plugin.tx_cmlosungen.view.templateRootPath}
+		partialRootPaths = {$plugin.tx_cmlosungen.view.partialRootPath}
+		layoutRootPaths = {$plugin.tx_cmlosungen.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_cmlosungen.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+}
+
+ # Module configuration
+module.tx_cmlosungen {
+	persistence {
+		storagePid = {$module.tx_cmlosungen.persistence.storagePid}
+	}
+	view {
+		templateRootPaths = {$module.tx_cmlosungen.view.templateRootPath}
+		partialRootPaths = {$module.tx_cmlosungen.view.partialRootPath}
+		layoutRootPaths = {$module.tx_cmlosungen.view.layoutRootPath}
+	}
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-11-24T23:02:11Z" product-name="cm_losungen">
+		<header/>
+		<body>
+
+			<trans-unit id="datum.description">
+				<source>datum</source>
+			</trans-unit>
+			<trans-unit id="wtag.description">
+				<source>wtag</source>
+			</trans-unit>
+			<trans-unit id="sonntag.description">
+				<source>sonntag</source>
+			</trans-unit>
+			<trans-unit id="losungstext.description">
+				<source>losungstext</source>
+			</trans-unit>
+			<trans-unit id="losungsvers.description">
+				<source>losungsvers</source>
+			</trans-unit>
+			<trans-unit id="lehrtext.description">
+				<source>lehrtext</source>
+			</trans-unit>
+			<trans-unit id="lehrvers.description">
+				<source>lehrvers</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
