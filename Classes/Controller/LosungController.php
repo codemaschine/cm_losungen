@@ -89,7 +89,7 @@ class LosungController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * action new
 	 *
 	 * @param \CODEMASCHINE\CmLosungen\Domain\Model\Losung $newLosung
-	 * @dontvalidate $newLosung
+	 * @ignorevalidation $newLosung
 	 * @return void
 	 */
 	public function newAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $newLosung = NULL) {
