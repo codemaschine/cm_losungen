@@ -29,6 +29,7 @@ use \TYPO3\CMS\Core\Utility\GeneralUtility as t3lib_div;
 use \DateTime;
 use CODEMASCHINE\CmLosungen\Domain\Model\Losung;
 use TYPO3\CMS\Core\Utility\File\BasicFileUtility;
+use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 
 /**
  *
@@ -51,7 +52,7 @@ class ImportFileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 	 * action new
 	 *
 	 * @param \CODEMASCHINE\CmLosungen\Domain\Model\ImportFile $importFile
-	 * @dontvalidate $newImportFile
+	 * @IgnoreValidation("newImportFile")
 	 * @return void
 	 */
 	public function newAction(\CODEMASCHINE\CmLosungen\Domain\Model\ImportFile $importFile = NULL) {
