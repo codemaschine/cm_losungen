@@ -1,6 +1,8 @@
 <?php
 namespace CODEMASCHINE\CmLosungen\Controller;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -42,6 +44,12 @@ class LosungController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @inject
 	 */
 	protected $losungRepository;
+	
+	protected function initializeAction() {
+	  if ($this->settings['format'] == 'json') {
+	    $this->defaultViewObjectName = \TYPO3\CMS\Extbase\Mvc\View\JsonView::class;
+	  }
+	}
 
 	/**
 	 * action list
@@ -70,14 +78,17 @@ class LosungController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function tageslosungAction($datum = NULL) {
-	  //\t3lib_div::devLog("Losung für timestamp ".mktime(0,0,0), 'jdtest');
-	  if ($datum && preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/',$datum))
-	    $losungen = $this->losungRepository->findByDatum(DateTime($datum)->getTimestamp());
+	  //$logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class)->getLogger(__CLASS__);
+	  //$logger->info('datum: '.$datum);
+	  if ($datum && preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/',$datum)) {
+	    $losungen = $this->losungRepository->findByDatum(date_create($datum)->getTimestamp());
+	  }
 	  else
-	    $losungen = $this->losungRepository->findByDatum(mktime(0,0,0));
+	    $losungen = $this->losungRepository->findByDatum(strtotime("today"));
 	  
-	  
-	  //\t3lib_div::devLog("Losung".$losung->getLosungsvers(), 'jdtest');
+    if ($this->settings['format'] == 'json') {
+      $this->view->setVariablesToRender(['losung']);
+    }
 	  
 	  $this->view->assign('wochenversanzeigen', $this->settings['wochenversanzeigen']);
 	  $this->view->assign('lehrtextanzeigen', $this->settings['lehrtextanzeigen']);
