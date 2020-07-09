@@ -28,6 +28,22 @@
 			<trans-unit id="tx_cmlosungen_domain_model_losung.lehrvers">
 				<source>Lehrvers</source>
 			</trans-unit>
+			<trans-unit id="tx_cmlosungen_domain_model_losung.btv_text">
+                <source>BibelTV Verstext</source>
+            </trans-unit>
+            <trans-unit id="tx_cmlosungen_domain_model_losung.btv_vers">
+                <source>BibelTV Versangabe</source>
+            </trans-unit>
+            <trans-unit id="tx_cmlosungen_domain_model_losung.btv_translation">
+                <source>BibelTV Übersetzung</source>
+            </trans-unit>
+            <trans-unit id="tx_cmlosungen_domain_model_losung.oeab_text">
+                <source>ÖAB Verstext</source>
+            </trans-unit>
+            <trans-unit id="tx_cmlosungen_domain_model_losung.oeab_vers">
+                <source>ÖAB Versangabe</source>
+            </trans-unit>
+
 
 			<trans-unit id="tx_cmlosungen_domain_model_importfile">
 				<source>Import File</source>

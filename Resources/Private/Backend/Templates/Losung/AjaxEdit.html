@@ -1,0 +1,15 @@
+
+{namespace ajax=TYPO3\CmAjax\ViewHelpers}
+
+
+<td colspan="14" style="padding:0;">
+
+<ajax:form action="update" name="losung" object="{losung}" update="#losung_{losung.uid}"  error="#cm-ajax-contact-form-{ajax:contentUid()} .errors" loading="" onsubmit="">
+
+  <f:render partial="Losung/LosungFields" arguments="{losung:losung}" />
+
+
+</ajax:form>
+  
+
+</td>

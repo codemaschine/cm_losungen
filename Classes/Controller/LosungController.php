@@ -35,7 +35,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class LosungController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class LosungController extends \TYPO3\CmAjax\Controller\ApplicationController {
 
 	/**
 	 * losungRepository
@@ -126,7 +126,11 @@ class LosungController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function editAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung) {
-		$this->view->assign('losung', $losung);
+	  $this->view->assign('losung', $losung);
+	  
+	  if ($this->isAjax())
+	    $this->view->render('ajaxEdit');
+	    
 	}
 
 	/**
@@ -137,8 +141,14 @@ class LosungController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 */
 	public function updateAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung) {
 		$this->losungRepository->update($losung);
-		$this->addFlashMessage('Losung bearbeitet.');
-		$this->redirect('list');
+		if ($this->isAjax()) {
+		  $this->view->assign('losung', $losung);
+		  $this->view->render('ajaxShow');
+		}
+		else {
+  		$this->addFlashMessage('Losung bearbeitet.');
+  		$this->redirect('list');
+		}
 	}
 
 	/**

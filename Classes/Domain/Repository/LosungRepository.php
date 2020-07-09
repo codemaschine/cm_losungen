@@ -34,6 +34,11 @@ namespace CODEMASCHINE\CmLosungen\Domain\Repository;
  *
  */
 class LosungRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+  
+  protected $defaultOrderings = array(
+      'datum' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
+  );
+  
 
 }
 ?>

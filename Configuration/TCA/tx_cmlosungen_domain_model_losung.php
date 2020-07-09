@@ -174,6 +174,53 @@ return array(
 				'eval' => 'trim'
 			),
 		),
+	    'btv_text' => array(
+	        'exclude' => 0,
+	        'label' => 'LLL:EXT:cm_losungen/Resources/Private/Language/locallang_db.xlf:tx_cmlosungen_domain_model_losung.btv_text',
+	        'config' => array(
+	            'type' => 'text',
+	            'cols' => 40,
+	            'rows' => 15,
+	            'eval' => 'trim'
+	        ),
+	    ),
+	    'btv_vers' => array(
+	        'exclude' => 0,
+	        'label' => 'LLL:EXT:cm_losungen/Resources/Private/Language/locallang_db.xlf:tx_cmlosungen_domain_model_losung.btv_vers',
+	        'config' => array(
+	            'type' => 'input',
+	            'size' => 30,
+	            'eval' => 'trim'
+	        ),
+	    ),
+	    'btv_translation' => array(
+	        'exclude' => 0,
+	        'label' => 'LLL:EXT:cm_losungen/Resources/Private/Language/locallang_db.xlf:tx_cmlosungen_domain_model_losung.btv_translation',
+	        'config' => array(
+	            'type' => 'input',
+	            'size' => 30,
+	            'eval' => 'trim'
+	        ),
+	    ),
+	    'oeab_text' => array(
+	        'exclude' => 0,
+	        'label' => 'LLL:EXT:cm_losungen/Resources/Private/Language/locallang_db.xlf:tx_cmlosungen_domain_model_losung.oeab_text',
+	        'config' => array(
+	            'type' => 'text',
+	            'cols' => 40,
+	            'rows' => 15,
+	            'eval' => 'trim'
+	        ),
+	    ),
+	    'oeab_vers' => array(
+	        'exclude' => 0,
+	        'label' => 'LLL:EXT:cm_losungen/Resources/Private/Language/locallang_db.xlf:tx_cmlosungen_domain_model_losung.oeab_vers',
+	        'config' => array(
+	            'type' => 'input',
+	            'size' => 30,
+	            'eval' => 'trim'
+	        ),
+	    ),
 	),
 );
 

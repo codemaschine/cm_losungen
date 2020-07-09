@@ -17,21 +17,18 @@
   		<th><f:translate key="tx_cmlosungen_domain_model_losung.losungsvers" /></th>
   		<th><f:translate key="tx_cmlosungen_domain_model_losung.lehrtext" /></th>
   		<th><f:translate key="tx_cmlosungen_domain_model_losung.lehrvers" /></th>
+        <th><f:translate key="tx_cmlosungen_domain_model_losung.btv_text" /></th>
+        <th><f:translate key="tx_cmlosungen_domain_model_losung.btv_vers" /></th>
+        <th><f:translate key="tx_cmlosungen_domain_model_losung.btv_translation" /></th>
+        <th><f:translate key="tx_cmlosungen_domain_model_losung.oeab_text" /></th>
+        <th><f:translate key="tx_cmlosungen_domain_model_losung.oeab_vers" /></th>
   		<th> </th>
   		<th> </th>
   	</tr>
   
   	<f:for each="{losungsPage}" as="losung">
-  		<tr>
-  			<td>{losung.datum -> f:format.date(format: 'd.m.Y')}</td>
-  			<td>{losung.wtag}</td>
-  			<td>{losung.sonntag}</td>
-  			<td>{losung.losungstext -> f:format.crop(maxCharacters: 30)}</td>
-  			<td>{losung.losungsvers}</td>
-  			<td>{losung.lehrtext -> f:format.crop(maxCharacters: 30)}</td>
-  			<td>{losung.lehrvers}</td>
-  			<td><f:link.action action="edit" arguments="{losung: losung}" title="Bearbeiten"><core:icon size="small" identifier="actions-document-open" /></f:link.action></td>
-        <td><f:link.action action="delete" arguments="{losung: losung}" title="Löschen" onclick="return confirm('Wirklich löschen?');"><core:icon size="small" identifier="actions-edit-delete" /></f:link.action></td>
+  		<tr id="losung_{losung.uid}">
+  			<f:render partial="Losung/Losung"  arguments="{losung:losung}" />
   		</tr>
   	</f:for>
   </table>

@@ -13,6 +13,14 @@ CREATE TABLE tx_cmlosungen_domain_model_losung (
 	losungsvers varchar(255) DEFAULT '' NOT NULL,
 	lehrtext text NOT NULL,
 	lehrvers varchar(255) DEFAULT '' NOT NULL,
+	
+	btv_text text NOT NULL,
+    btv_vers varchar(255) DEFAULT '' NOT NULL,
+    btv_translation varchar(255) DEFAULT '' NOT NULL,
+    
+    oeab_text text NOT NULL,
+    oeab_vers varchar(255) DEFAULT '' NOT NULL,
+    
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

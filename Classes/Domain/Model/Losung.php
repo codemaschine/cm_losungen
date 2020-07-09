@@ -46,21 +46,21 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * wtag
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $wtag;
 
 	/**
 	 * sonntag
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $sonntag;
 
 	/**
 	 * losungstext
 	 *
-	 * @var \string
+	 * @var string
 	 * @validate NotEmpty
 	 */
 	protected $losungstext;
@@ -68,7 +68,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * losungsvers
 	 *
-	 * @var \string
+	 * @var string
 	 * @validate NotEmpty
 	 */
 	protected $losungsvers;
@@ -76,16 +76,51 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * lehrtext
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $lehrtext;
 
 	/**
 	 * lehrvers
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $lehrvers;
+
+	/**
+	 * btv Vers-Text
+	 *
+	 * @var string
+	 */
+	protected $btvText;
+
+	/**
+	 * Btv Versangabe
+	 *
+	 * @var string
+	 */
+	protected $btvVers;
+
+	/**
+	 * Btv Bibelübersetzung zum Text
+	 *
+	 * @var string
+	 */
+	protected $btvTranslation;
+
+	/**
+	 * ÖAB Vers-Text
+	 *
+	 * @var string
+	 */
+	protected $oeabText;
+
+	/**
+	 * ÖAB Versangabe
+	 *
+	 * @var string
+	 */
+	protected $oeabVers;
 
 	/**
 	 * Returns the datum
@@ -111,7 +146,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the wtag
 	 *
-	 * @return \string $wtag
+	 * @return string $wtag
 	 */
 	public function getWtag() {
 		return $this->wtag;
@@ -120,7 +155,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the wtag
 	 *
-	 * @param \string $wtag
+	 * @param string $wtag
 	 * @return void
 	 */
 	public function setWtag($wtag) {
@@ -130,7 +165,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the sonntag
 	 *
-	 * @return \string $sonntag
+	 * @return string $sonntag
 	 */
 	public function getSonntag() {
 		return $this->sonntag;
@@ -139,7 +174,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the sonntag
 	 *
-	 * @param \string $sonntag
+	 * @param string $sonntag
 	 * @return void
 	 */
 	public function setSonntag($sonntag) {
@@ -149,7 +184,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the losungstext
 	 *
-	 * @return \string $losungstext
+	 * @return string $losungstext
 	 */
 	public function getLosungstext() {
 		return $this->losungstext;
@@ -158,7 +193,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the losungstext
 	 *
-	 * @param \string $losungstext
+	 * @param string $losungstext
 	 * @return void
 	 */
 	public function setLosungstext($losungstext) {
@@ -168,7 +203,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the losungsvers
 	 *
-	 * @return \string $losungsvers
+	 * @return string $losungsvers
 	 */
 	public function getLosungsvers() {
 		return $this->losungsvers;
@@ -177,7 +212,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the losungsvers
 	 *
-	 * @param \string $losungsvers
+	 * @param string $losungsvers
 	 * @return void
 	 */
 	public function setLosungsvers($losungsvers) {
@@ -187,7 +222,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the lehrtext
 	 *
-	 * @return \string $lehrtext
+	 * @return string $lehrtext
 	 */
 	public function getLehrtext() {
 		return $this->lehrtext;
@@ -196,7 +231,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the lehrtext
 	 *
-	 * @param \string $lehrtext
+	 * @param string $lehrtext
 	 * @return void
 	 */
 	public function setLehrtext($lehrtext) {
@@ -206,7 +241,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the lehrvers
 	 *
-	 * @return \string $lehrvers
+	 * @return string $lehrvers
 	 */
 	public function getLehrvers() {
 		return $this->lehrvers;
@@ -215,12 +250,83 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the lehrvers
 	 *
-	 * @param \string $lehrvers
+	 * @param string $lehrvers
 	 * @return void
 	 */
 	public function setLehrvers($lehrvers) {
 		$this->lehrvers = $lehrvers;
 	}
+	
+  /**
+   * @return string
+   */
+  public function getBtvText() {
+      return $this->btvText;
+  }
+
+  /**
+   * @return string
+   */
+  public function getBtvVers() {
+      return $this->btvVers;
+  }
+
+  /**
+  * @return string
+  */
+  public function getBtvTranslation() {
+      return $this->btvTranslation;
+  }
+  
+    /**
+   * @return string
+   */
+  public function getOeabText() {
+      return $this->oeabText;
+  }
+  
+    /**
+   * @return string
+   */
+  public function getOeabVers() {
+      return $this->oeabVers;
+  }
+  
+    /**
+   * @param string $btvText
+   */
+  public function setBtvText($btvText) {
+      $this->btvText = $btvText;
+  }
+  
+    /**
+   * @param string $btvVers
+   */
+  public function setBtvVers($btvVers) {
+      $this->btvVers = $btvVers;
+  }
+  
+    /**
+   * @param string $btvTranslation
+   */
+  public function setBtvTranslation($btvTranslation) {
+      $this->btvTranslation = $btvTranslation;
+  }
+  
+    /**
+   * @param string $oeabText
+   */
+  public function setOeabText($oeabText) {
+      $this->oeabText = $oeabText;
+  }
+  
+    /**
+   * @param string $oeabVers
+   */
+  public function setOeabVers($oeabVers) {
+      $this->oeabVers = $oeabVers;
+  }
+
 
 }
 ?>

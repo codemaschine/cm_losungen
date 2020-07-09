@@ -1,7 +1,18 @@
 <label for="datum">
 	<f:translate key="tx_cmlosungen_domain_model_losung.datum" /> <span class="required">(required)</span>
 </label><br />
-	<f:form.textfield name="losung[datum][date]"  value="{losung.datum->f:format.date(format: 'd.m.Y')}" id="datum" /><br />
+  
+  <div><div>
+  <f:be.pageRenderer includeRequireJsModules="{0: 'TYPO3/CMS/Backend/DateTimePicker'}" />
+  <f:form.textfield
+                        name="losung[datum][date]"
+                        value="{losung.datum->f:format.date(format: 'd.m.Y')}"
+                        id="datum"
+                        class="input-sm t3js-datetimepicker t3js-clearable"
+                        data="{date-type: 'date', date-format: 'L'}"
+                        /><br />
+  <f:comment><f:form.hidden name="losung[datum][dateFormat]" value="d.m.Y"/></f:comment>
+  </div></div>
   <f:form.hidden name="losung[datum][dateFormat]" value="d.m.Y"/>
 <label for="wtag">
 	<f:translate key="tx_cmlosungen_domain_model_losung.wtag" />
@@ -14,7 +25,7 @@
 <label for="losungstext">
 	<f:translate key="tx_cmlosungen_domain_model_losung.losungstext" /> <span class="required">(required)</span>
 </label><br />
-	<f:form.textarea property="losungstext" cols="40" rows="15" /><br />
+	<f:form.textarea property="losungstext" cols="40" rows="5" /><br />
 <label for="losungsvers">
 	<f:translate key="tx_cmlosungen_domain_model_losung.losungsvers" /> <span class="required">(required)</span>
 </label><br />
@@ -22,18 +33,37 @@
 <label for="lehrtext">
 	<f:translate key="tx_cmlosungen_domain_model_losung.lehrtext" />
 </label><br />
-	<f:form.textarea property="lehrtext" cols="40" rows="15" /><br />
+	<f:form.textarea property="lehrtext" cols="40" rows="5" /><br />
 <label for="lehrvers">
 	<f:translate key="tx_cmlosungen_domain_model_losung.lehrvers" />
 </label><br />
 	<f:form.textfield property="lehrvers" /><br />
+<label for="btv_text">
+    <f:translate key="tx_cmlosungen_domain_model_losung.btv_text" />
+</label><br />
+    <f:form.textarea property="btvText" cols="40" rows="5" /><br />
+<label for="btv_vers">
+    <f:translate key="tx_cmlosungen_domain_model_losung.btv_vers" />
+</label><br />
+    <f:form.textfield property="btvVers" /><br />
+<label for="btv_translation">
+    <f:translate key="tx_cmlosungen_domain_model_losung.btv_translation" />
+</label><br />
+    <f:form.textfield property="btvTranslation" /><br />
+<label for="oeab_text">
+    <f:translate key="tx_cmlosungen_domain_model_losung.oeab_text" />
+</label><br />
+    <f:form.textarea property="oeabText" cols="40" rows="5" /><br />
+<label for="oeab_vers">
+    <f:translate key="tx_cmlosungen_domain_model_losung.oeab_vers" />
+</label><br />
+    <f:form.textfield property="oeabVers" /><br />
   
   
 <script type="text/javascript">
 
 var datumLabel = "{f:translate(key: 'tx_cmlosungen_domain_model_losung.datum')}";
-
-//<![CDATA[
+/*
 var datumfield = new Ext.form.DateField({
     applyTo: 'datum', // <-- here you say where it must be rendered
     fieldLabel: datumLabel,    
@@ -46,6 +76,6 @@ var datumfield = new Ext.form.DateField({
     allowBlank: false,
     editable: false,
     anchor : '32%'
-});
+});*/
 
 </script>

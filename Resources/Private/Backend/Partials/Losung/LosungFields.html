@@ -1,0 +1,84 @@
+
+<table width="100" style="width: 100%; border: none; margin:0; padding: 0; background-color: transparent;">
+<tr class="abort_content" style="display:none;">
+   <f:render partial="Losung/Losung"  arguments="{losung:losung}" />
+</tr>
+<tr>
+<td style="background-color: transparent;">  
+  {losung.datum -> f:format.date(format: 'd.m.Y')}<br>
+  
+  <label for="wtag">
+      <f:translate key="tx_cmlosungen_domain_model_losung.wtag" />
+  </label><br />
+      <f:form.textfield property="wtag" /><br />
+  <label for="sonntag">
+      <f:translate key="tx_cmlosungen_domain_model_losung.sonntag" />
+  </label><br />
+      <f:form.textfield property="sonntag" /><br />
+  <label for="losungstext">
+      <f:translate key="tx_cmlosungen_domain_model_losung.losungstext" /> <span class="required">(required)</span>
+  </label><br />
+      <f:form.textarea property="losungstext" cols="40" rows="5" /><br />
+  <label for="losungsvers">
+      <f:translate key="tx_cmlosungen_domain_model_losung.losungsvers" /> <span class="required">(required)</span>
+  </label><br />
+      <f:form.textfield property="losungsvers" /><br />
+  <label for="lehrtext">
+      <f:translate key="tx_cmlosungen_domain_model_losung.lehrtext" />
+  </label><br />
+      <f:form.textarea property="lehrtext" cols="40" rows="5" /><br />
+  <label for="lehrvers">
+      <f:translate key="tx_cmlosungen_domain_model_losung.lehrvers" />
+  </label><br />
+      <f:form.textfield property="lehrvers" /><br />
+</td>
+<td style="vertical-align: top; background-color: transparent;">
+  <label for="btv_text">
+      <f:translate key="tx_cmlosungen_domain_model_losung.btv_text" />
+  </label><br />
+      <f:form.textarea property="btvText" cols="40" rows="5" /><br />
+  <label for="btv_vers">
+      <f:translate key="tx_cmlosungen_domain_model_losung.btv_vers" />
+  </label><br />
+      <f:form.textfield property="btvVers" /><br />
+  <label for="btv_translation">
+      <f:translate key="tx_cmlosungen_domain_model_losung.btv_translation" />
+  </label><br />
+      <f:form.textfield property="btvTranslation" /><br />
+</td>
+<td style="vertical-align: top; background-color: transparent;">
+  <label for="oeab_text">
+      <f:translate key="tx_cmlosungen_domain_model_losung.oeab_text" />
+  </label><br />
+      <f:form.textarea property="oeabText" cols="40" rows="5" /><br />
+  <label for="oeab_vers">
+      <f:translate key="tx_cmlosungen_domain_model_losung.oeab_vers" />
+  </label><br />
+      <f:form.textfield property="oeabVers" /><br /><br /><br />
+      
+  <f:form.submit value="Speichern" />
+</td>
+<td style="vertical-align: top; background-color: transparent;">
+  <a href="#" onclick="$('#losung_{losung.uid}').html($('#losung_{losung.uid}').find('.abort_content').html()); return false;"><core:icon size="default" identifier="actions-close" /></a>
+</td>
+</tr></table>
+  <script type="text/javascript">
+  
+  var datumLabel = "{f:translate(key: 'tx_cmlosungen_domain_model_losung.datum')}";
+  /*
+  var datumfield = new Ext.form.DateField({
+      applyTo: 'datum', // <-- here you say where it must be rendered
+      fieldLabel: datumLabel,    
+      format: 'd.m.Y',
+      showToday: false,
+      //width: '80px',
+      //value: new Date(), 
+      //minValue: '02/01/2009',           <---- The minimum allowed date
+      //maxValue: '31/01/2009',           <---- The maximum allowed date
+      allowBlank: false,
+      editable: false,
+      anchor : '32%'
+  });*/
+  
+  </script>
+  
