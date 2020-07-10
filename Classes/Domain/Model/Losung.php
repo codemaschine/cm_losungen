@@ -123,6 +123,13 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $oeabVers;
 
 	/**
+	 * ÖAB Bibelübersetzung zum Text
+	 *
+	 * @var string
+	 */
+	protected $oeabTranslation;
+
+	/**
 	 * Returns the datum
 	 *
 	 * @return \DateTime $datum
@@ -272,61 +279,74 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
   }
 
   /**
-  * @return string
-  */
+   * @return string
+   */
   public function getBtvTranslation() {
       return $this->btvTranslation;
   }
   
-    /**
+  /**
    * @return string
    */
   public function getOeabText() {
       return $this->oeabText;
   }
   
-    /**
+  /**
    * @return string
    */
   public function getOeabVers() {
       return $this->oeabVers;
   }
   
-    /**
+  /**
    * @param string $btvText
    */
   public function setBtvText($btvText) {
       $this->btvText = $btvText;
   }
   
-    /**
+  /**
    * @param string $btvVers
    */
   public function setBtvVers($btvVers) {
       $this->btvVers = $btvVers;
   }
   
-    /**
+  /**
    * @param string $btvTranslation
    */
   public function setBtvTranslation($btvTranslation) {
       $this->btvTranslation = $btvTranslation;
   }
   
-    /**
+  /**
    * @param string $oeabText
    */
   public function setOeabText($oeabText) {
       $this->oeabText = $oeabText;
   }
   
-    /**
+  /**
    * @param string $oeabVers
    */
   public function setOeabVers($oeabVers) {
       $this->oeabVers = $oeabVers;
   }
-
+  
+  /**
+   * @return string
+   */
+  public function getOeabTranslation() {
+      return $this->oeabTranslation;
+  }
+  
+  /**
+   * @param string $oeabTranslation
+   */
+  public function setOeabTranslation($oeabTranslation) {
+      $this->oeabTranslation = $oeabTranslation;
+  }
 
 }
 ?>

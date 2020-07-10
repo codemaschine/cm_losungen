@@ -221,6 +221,15 @@ return array(
 	            'eval' => 'trim'
 	        ),
 	    ),
+	    'oeab_translation' => array(
+	        'exclude' => 0,
+	        'label' => 'LLL:EXT:cm_losungen/Resources/Private/Language/locallang_db.xlf:tx_cmlosungen_domain_model_losung.oeab_translation',
+	        'config' => array(
+	            'type' => 'input',
+	            'size' => 30,
+	            'eval' => 'trim'
+	        ),
+	    ),
 	),
 );
 

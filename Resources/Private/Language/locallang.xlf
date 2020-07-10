@@ -43,7 +43,9 @@
             <trans-unit id="tx_cmlosungen_domain_model_losung.oeab_vers">
                 <source>ÖAB Versangabe</source>
             </trans-unit>
-			
+			<trans-unit id="tx_cmlosungen_domain_model_losung.oeab_translation">
+                <source>ÖAB Übersetzung</source>
+            </trans-unit>
 			
 			<trans-unit id="tx_cmlosungen_domain_model_importfile">
 				<source>Datei hochladen</source>

@@ -20,6 +20,7 @@ CREATE TABLE tx_cmlosungen_domain_model_losung (
     
     oeab_text text NOT NULL,
     oeab_vers varchar(255) DEFAULT '' NOT NULL,
+    oeab_translation varchar(255) DEFAULT '' NOT NULL,
     
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
