@@ -30,6 +30,7 @@ use \DateTime;
 use CODEMASCHINE\CmLosungen\Domain\Model\Losung;
 use TYPO3\CMS\Core\Utility\File\BasicFileUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+use TYPO3\CMS\Extbase\Annotation\Inject;
 
 /**
  *
@@ -44,7 +45,7 @@ class ImportFileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 	 * losungRepository
 	 *
 	 * @var \CODEMASCHINE\CmLosungen\Domain\Repository\LosungRepository
-	 * @inject
+	 * @Inject
 	 */
 	protected $losungRepository;
 

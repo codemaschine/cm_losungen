@@ -26,6 +26,8 @@ namespace CODEMASCHINE\CmLosungen\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Extbase\Annotation\Validate;
+
 /**
  *
  *
@@ -39,7 +41,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * datum
 	 *
 	 * @var \DateTime
-	 * @validate NotEmpty
+	 * @Validate("NotEmpty")
 	 */
 	protected $datum;
 
@@ -61,7 +63,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * losungstext
 	 *
 	 * @var string
-	 * @validate NotEmpty
+	 * @Validate("NotEmpty")
 	 */
 	protected $losungstext;
 
@@ -69,7 +71,7 @@ class Losung extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * losungsvers
 	 *
 	 * @var string
-	 * @validate NotEmpty
+	 * @Validate("NotEmpty")
 	 */
 	protected $losungsvers;
 

@@ -4,17 +4,17 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'CODEMASCHINE.' . $_EXTKEY,
+	'cm_losungen',
 	'Losung',
 	array(
-		'Losung' => 'tageslosung, list, show',
-		'ImportFile' => '',
+		\CODEMASCHINE\CmLosungen\Controller\LosungController::class => 'tageslosung, list, show',
+		\CODEMASCHINE\CmLosungen\Controller\ImportFileController::class => '',
 		
 	),
 	// non-cacheable actions
 	array(
-		'Losung' => 'tageslosung',
-		'ImportFile' => '',
+		\CODEMASCHINE\CmLosungen\Controller\LosungController::class => 'tageslosung',
+		\CODEMASCHINE\CmLosungen\Controller\ImportFileController::class => '',
 		
 	)
 );

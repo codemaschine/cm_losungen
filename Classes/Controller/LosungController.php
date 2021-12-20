@@ -1,7 +1,6 @@
 <?php
 namespace CODEMASCHINE\CmLosungen\Controller;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /***************************************************************
  *  Copyright notice
@@ -28,6 +27,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Extbase\Annotation\Inject;
+use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+
 /**
  *
  *
@@ -41,7 +43,7 @@ class LosungController extends \TYPO3\CmAjax\Controller\ApplicationController {
 	 * losungRepository
 	 *
 	 * @var \CODEMASCHINE\CmLosungen\Domain\Repository\LosungRepository
-	 * @inject
+	 * @Inject
 	 */
 	protected $losungRepository;
 	
@@ -100,7 +102,7 @@ class LosungController extends \TYPO3\CmAjax\Controller\ApplicationController {
 	 * action new
 	 *
 	 * @param \CODEMASCHINE\CmLosungen\Domain\Model\Losung $newLosung
-	 * @ignorevalidation $newLosung
+	 * @IgnoreValidation $newLosung
 	 * @return void
 	 */
 	public function newAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $newLosung = NULL) {
