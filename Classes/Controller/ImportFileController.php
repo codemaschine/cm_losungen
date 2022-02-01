@@ -68,7 +68,6 @@ class ImportFileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 	 */
 	public function createAction(\CODEMASCHINE\CmLosungen\Domain\Model\ImportFile $importFile) {
 	  $filename = $this->saveFile($importFile);
-	  t3lib_div::devLog('Losungen-file: '.var_export($filename, true), 'jdtest');
 	  $xml = simplexml_load_file($filename);
 	   
 	  $existingLosungen = $this->losungRepository->findAll();
@@ -77,12 +76,10 @@ class ImportFileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 	  foreach ($existingLosungen as $l) {
 	    $existingLosungenHash[(string) $l->getDatum()->getTimestamp()] = $l;
 	  }
-	  t3lib_div::devLog('Losungen-xml: '.var_export($xml, true), 'jdtest');
 	  
 	  foreach ($xml->Losungen as $l) {
 	    
 	    $datum = new Datetime($l->Datum);
-	    t3lib_div::devLog('Timestamp: '.$datum->getTimestamp(), 'jdtest');
 	    if (isset($existingLosungenHash[$datum->getTimestamp()]))
 	      $losung = $existingLosungenHash[$datum->getTimestamp()];
 	    else {

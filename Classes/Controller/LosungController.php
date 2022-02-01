@@ -102,7 +102,7 @@ class LosungController extends \TYPO3\CmAjax\Controller\ApplicationController {
 	 * action new
 	 *
 	 * @param \CODEMASCHINE\CmLosungen\Domain\Model\Losung $newLosung
-	 * @IgnoreValidation $newLosung
+	 * @IgnoreValidation("newLosung")
 	 * @return void
 	 */
 	public function newAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $newLosung = NULL) {
