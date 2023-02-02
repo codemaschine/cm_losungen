@@ -27,8 +27,12 @@ namespace CODEMASCHINE\CmLosungen\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Extbase\Annotation\Inject;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+use TYPO3Fluid\Fluid\View\ViewInterface;
+use TYPO3\CMS\Extbase\Mvc\View\JsonView;
 
 /**
  *
@@ -40,12 +44,19 @@ use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 class LosungController extends \TYPO3\CmAjax\Controller\ApplicationController {
 
 	/**
+	 * The current view, as resolved by resolveView()
+	 *
+	 * @var ViewInterface|JsonView
+	 */
+	protected $view;
+
+	/**
 	 * losungRepository
 	 *
 	 * @var \CODEMASCHINE\CmLosungen\Domain\Repository\LosungRepository
 	 * @Inject
 	 */
-	protected $losungRepository;
+	public $losungRepository;
 	
 	protected function initializeAction() {
 	  if ($this->settings['format'] == 'json') {
@@ -58,9 +69,16 @@ class LosungController extends \TYPO3\CmAjax\Controller\ApplicationController {
 	 *
 	 * @return void
 	 */
-	public function listAction() {
-		$losungs = $this->losungRepository->findAll();
-		$this->view->assign('losungs', $losungs);
+	public function listAction(int $currentPage = 1) {
+    $losungs = $this->losungRepository->findAll();
+    $arrayPaginator = new ArrayPaginator($losungs->toArray(), $currentPage, 50);
+    $paging = new SimplePagination($arrayPaginator);
+    $this->view->assignMultiple([
+			'losungs' => $losungs,
+			'paginator' => $arrayPaginator,
+			'paging' => $paging,
+			'pages' => range(1, $paging->getLastPageNumber()),
+		]);
 	}
 
 	/**
@@ -87,7 +105,7 @@ class LosungController extends \TYPO3\CmAjax\Controller\ApplicationController {
 	  }
 	  else
 	    $losungen = $this->losungRepository->findByDatum(strtotime("today"));
-	  
+   
     if ($this->settings['format'] == 'json') {
       $this->view->setVariablesToRender(['losung']);
     }

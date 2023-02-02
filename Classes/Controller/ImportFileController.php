@@ -47,7 +47,7 @@ class ImportFileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
 	 * @var \CODEMASCHINE\CmLosungen\Domain\Repository\LosungRepository
 	 * @Inject
 	 */
-	protected $losungRepository;
+	public $losungRepository;
 
 	/**
 	 * action new

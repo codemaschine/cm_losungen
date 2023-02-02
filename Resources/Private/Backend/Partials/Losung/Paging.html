@@ -1,0 +1,32 @@
+<ul class="f3-widget-paginator">
+
+  <f:if condition="{paging.previousPageNumber} && {paging.previousPageNumber} >= {paging.firstPageNumber}">
+    <f:then>
+      <li class="previous">
+        <a rel="prev" href="{f:uri.action(action:actionName, arguments:{currentPage: paging.previousPageNumber})}">vorherige</a>
+      </li>
+    </f:then>
+  </f:if>
+
+  <f:for each="{pages}" as="page">
+    <f:if condition="{page} == {paginator.currentPageNumber}">
+      <f:then>
+        <li class="current">{page}</li>
+      </f:then>
+      <f:else>
+        <li>
+          <a href="{f:uri.action(action:actionName, arguments:{currentPage: page})}">{page}</a>
+        </li>
+      </f:else>
+    </f:if>
+  </f:for>
+
+  <f:if condition="{paging.nextPageNumber} && {paging.nextPageNumber} <= {paging.lastPageNumber}">
+    <f:then>
+      <li class="next">
+        <a rel="next" href="{f:uri.action(action:actionName, arguments:{currentPage: paging.nextPageNumber})}">nächste</a>
+      </li>
+    </f:then>
+  </f:if>
+
+</ul>

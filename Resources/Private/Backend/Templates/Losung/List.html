@@ -7,33 +7,35 @@
 
 <f:flashMessages />
 
-<f:widget.paginate objects="{losungs}" as="losungsPage" configuration="{itemsPerPage: 50, insertAbove: 1, insertBelow: 1}">
-  <table  class="tx_cmlosungen" >
-  	<tr>
-  		<th style="width: 100px;"><f:translate key="tx_cmlosungen_domain_model_losung.datum" /></th>
-  		<th><f:translate key="tx_cmlosungen_domain_model_losung.wtag" /></th>
-  		<th><f:translate key="tx_cmlosungen_domain_model_losung.sonntag" /></th>
-  		<th><f:translate key="tx_cmlosungen_domain_model_losung.losungstext" /></th>
-  		<th><f:translate key="tx_cmlosungen_domain_model_losung.losungsvers" /></th>
-  		<th><f:translate key="tx_cmlosungen_domain_model_losung.lehrtext" /></th>
-  		<th><f:translate key="tx_cmlosungen_domain_model_losung.lehrvers" /></th>
-        <th><f:translate key="tx_cmlosungen_domain_model_losung.btv_text" /></th>
-        <th><f:translate key="tx_cmlosungen_domain_model_losung.btv_vers" /></th>
-        <th><f:translate key="tx_cmlosungen_domain_model_losung.btv_translation" /></th>
-        <th><f:translate key="tx_cmlosungen_domain_model_losung.oeab_text" /></th>
-        <th><f:translate key="tx_cmlosungen_domain_model_losung.oeab_vers" /></th>
-  		<th><f:translate key="tx_cmlosungen_domain_model_losung.oeab_translation" /></th>
-        <th> </th>
-  		<th> </th>
-  	</tr>
-  
-  	<f:for each="{losungsPage}" as="losung">
-  		<tr id="losung_{losung.uid}">
-  			<f:render partial="Losung/Losung"  arguments="{losung:losung}" />
-  		</tr>
-  	</f:for>
-  </table>
-</f:widget.paginate>
+<f:render partial="Losung/Paging" arguments="{paging: paging, pages: pages, paginator: paginator}" />
+
+<table  class="tx_cmlosungen" >
+	<tr>
+		<th style="width: 100px;"><f:translate key="tx_cmlosungen_domain_model_losung.datum" /></th>
+		<th><f:translate key="tx_cmlosungen_domain_model_losung.wtag" /></th>
+		<th><f:translate key="tx_cmlosungen_domain_model_losung.sonntag" /></th>
+		<th><f:translate key="tx_cmlosungen_domain_model_losung.losungstext" /></th>
+		<th><f:translate key="tx_cmlosungen_domain_model_losung.losungsvers" /></th>
+		<th><f:translate key="tx_cmlosungen_domain_model_losung.lehrtext" /></th>
+		<th><f:translate key="tx_cmlosungen_domain_model_losung.lehrvers" /></th>
+			<th><f:translate key="tx_cmlosungen_domain_model_losung.btv_text" /></th>
+			<th><f:translate key="tx_cmlosungen_domain_model_losung.btv_vers" /></th>
+			<th><f:translate key="tx_cmlosungen_domain_model_losung.btv_translation" /></th>
+			<th><f:translate key="tx_cmlosungen_domain_model_losung.oeab_text" /></th>
+			<th><f:translate key="tx_cmlosungen_domain_model_losung.oeab_vers" /></th>
+		<th><f:translate key="tx_cmlosungen_domain_model_losung.oeab_translation" /></th>
+			<th> </th>
+		<th> </th>
+	</tr>
+
+	<f:for as="losung" each="{paginator.paginatedItems}" iteration="iterator">
+		<tr id="losung_{losung.uid}">
+			<f:render partial="Losung/Losung"  arguments="{losung:losung}" />
+		</tr>
+	</f:for>
+</table>
+
+<f:render partial="Losung/Paging" arguments="{paging: paging, pages: pages, paginator: paginator}" />
 
 <f:link.action action="new">Neue Losung</f:link.action>
 </f:section>

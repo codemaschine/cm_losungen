@@ -20,7 +20,8 @@ if (TYPO3_MODE === 'BE') {
 		'losungmanager',	// Submodule key
 		'',						// Position
 		array(
-			\CODEMASCHINE\CmLosungen\Controller\LosungController::class => 'list, show, new, create, edit, update, delete','ImportFile' => 'new, create',
+			\CODEMASCHINE\CmLosungen\Controller\LosungController::class => 'list, show, new, create, edit, update, delete',
+			\CODEMASCHINE\CmLosungen\Controller\ImportFileController::class => 'new, create',
 		),
 		array(
 			'access' => 'user,group',
