@@ -91,30 +91,37 @@ class LosungController extends \TYPO3\CmAjax\Controller\ApplicationController {
 		$this->view->assign('losung', $losung);
 	}
 
-	/**
-	 * action tageslosung
-	 *
-	 * @param string $datum
-	 * @return void
-	 */
-	public function tageslosungAction($datum = NULL) {
-	  //$logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class)->getLogger(__CLASS__);
-	  //$logger->info('datum: '.$datum);
-	  if ($datum && preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/',$datum)) {
-	    $losungen = $this->losungRepository->findByDatum(date_create($datum)->getTimestamp());
-	  }
-	  else
-	    $losungen = $this->losungRepository->findByDatum(strtotime("today"));
-   
+  /**
+   * action tageslosung
+   *
+   * @param string $datum
+   * @return void
+   */
+  public function tageslosungAction($datum = NULL) {
+    //$logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class)->getLogger(__CLASS__);
+    //$logger->info('datum: '.$datum);
+    if ($datum && preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $datum)) {
+      $losungen = $this->losungRepository->findByDatum(date_create($datum)->getTimestamp());
+    } else
+      $losungen = $this->losungRepository->findByDatum(strtotime("today"));
+
+    $response = $this->responseFactory->createResponse();
+
     if ($this->settings['format'] == 'json') {
       $this->view->setVariablesToRender(['losung']);
+      $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8');
+    } else {
+      $response = $response->withHeader('Content-Type', 'text/html; charset=utf-8');
     }
-	  
-	  $this->view->assign('wochenversanzeigen', $this->settings['wochenversanzeigen']);
-	  $this->view->assign('lehrtextanzeigen', $this->settings['lehrtextanzeigen']);
-	  
-		$this->view->assign('losung', count($losungen) ? $losungen[0] : NULL);
-	}
+
+    $this->view->assign('wochenversanzeigen', $this->settings['wochenversanzeigen']);
+    $this->view->assign('lehrtextanzeigen', $this->settings['lehrtextanzeigen']);
+
+    $this->view->assign('losung', count($losungen) ? $losungen[0] : NULL);
+
+    $response = $response->withHeader('Access-Control-Allow-Origin', '*');
+    return $response->withBody($this->streamFactory->createStream($this->view->render()));
+  }
 
 	/**
 	 * action new
