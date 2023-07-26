@@ -114,8 +114,8 @@ class LosungController extends \TYPO3\CmAjax\Controller\ApplicationController {
       $response = $response->withHeader('Content-Type', 'text/html; charset=utf-8');
     }
 
-    $this->view->assign('wochenversanzeigen', $this->settings['wochenversanzeigen']);
-    $this->view->assign('lehrtextanzeigen', $this->settings['lehrtextanzeigen']);
+    $this->view->assign('wochenversanzeigen', $this->settings['wochenversanzeigen'] ?? null);
+    $this->view->assign('lehrtextanzeigen', $this->settings['lehrtextanzeigen'] ?? null);
 
     $this->view->assign('losung', count($losungen) ? $losungen[0] : NULL);
 
