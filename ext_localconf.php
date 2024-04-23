@@ -13,7 +13,7 @@ if (!defined('TYPO3_MODE')) {
 	),
 	// non-cacheable actions
 	array(
-		\CODEMASCHINE\CmLosungen\Controller\LosungController::class => 'tageslosung',
+		\CODEMASCHINE\CmLosungen\Controller\LosungController::class => '',  // JB: activated Caching for Varnish Cache.
 		\CODEMASCHINE\CmLosungen\Controller\ImportFileController::class => '',
 		
 	)
