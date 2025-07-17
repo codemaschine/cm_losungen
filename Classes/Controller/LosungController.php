@@ -1,4 +1,5 @@
 <?php
+
 namespace CODEMASCHINE\CmLosungen\Controller;
 
 
@@ -29,10 +30,10 @@ namespace CODEMASCHINE\CmLosungen\Controller;
 
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
-use TYPO3\CMS\Extbase\Annotation\Inject;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 use TYPO3Fluid\Fluid\View\ViewInterface;
 use TYPO3\CMS\Extbase\Mvc\View\JsonView;
+use CODEMASCHINE\CmLosungen\Domain\Repository\LosungRepository;
 
 /**
  *
@@ -41,65 +42,59 @@ use TYPO3\CMS\Extbase\Mvc\View\JsonView;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class LosungController extends \TYPO3\CmAjax\Controller\ApplicationController {
+class LosungController extends ActionController {
 
-	/**
-	 * The current view, as resolved by resolveView()
-	 *
-	 * @var ViewInterface|JsonView
-	 */
-	protected $view;
+  /**
+   * The current view, as resolved by resolveView()
+   *
+   * @var ViewInterface|JsonView
+   */
+  protected $view;
 
-	/**
-	 * losungRepository
-	 *
-	 * @var \CODEMASCHINE\CmLosungen\Domain\Repository\LosungRepository
-	 * @Inject
-	 */
-	public $losungRepository;
-	
-	protected function initializeAction() {
-	  if ($this->settings['format'] == 'json') {
-	    $this->defaultViewObjectName = \TYPO3\CMS\Extbase\Mvc\View\JsonView::class;
-	  }
-	}
+  public function __construct(
+    private readonly LosungRepository $losungRepository
+  ) {}
 
-	/**
-	 * action list
-	 *
-	 * @return void
-	 */
-	public function listAction(int $currentPage = 1) {
+  protected function initializeAction() {
+    parent::initializeAction();
+    if (!empty($this->settings['format']) && $this->settings['format'] == 'json') {
+      $this->defaultViewObjectName = \TYPO3\CMS\Extbase\Mvc\View\JsonView::class;
+    }
+  }
+
+  /**
+   * action list
+   *
+   */
+  public function listAction(int $currentPage = 1) {
     $losungs = $this->losungRepository->findAll();
     $arrayPaginator = new ArrayPaginator($losungs->toArray(), $currentPage, 50);
     $paging = new SimplePagination($arrayPaginator);
-    $this->view->assignMultiple([
-			'losungs' => $losungs,
-			'paginator' => $arrayPaginator,
-			'paging' => $paging,
-			'pages' => range(1, $paging->getLastPageNumber()),
-		]);
-	}
+    $this->moduleTemplate->assignMultiple([
+      'losungs' => $losungs,
+      'paginator' => $arrayPaginator,
+      'paging' => $paging,
+      'pages' => range(1, $paging->getLastPageNumber()),
+    ]);
 
-	/**
-	 * action show
-	 *
-	 * @param \CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung
-	 * @return void
-	 */
-	public function showAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung) {
-		$this->view->assign('losung', $losung);
-	}
+    return $this->moduleTemplate->renderResponse();
+  }
+
+  /**
+   * action show
+   *
+   */
+  public function showAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung) {
+    $this->moduleTemplate->assign('losung', $losung);
+
+    return $this->moduleTemplate->renderResponse();
+  }
 
   /**
    * action tageslosung
    *
-   * @param string $datum
-   * @return void
    */
-  public function tageslosungAction($datum = NULL) {
-    //$logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class)->getLogger(__CLASS__);
-    //$logger->info('datum: '.$datum);
+  public function tageslosungAction(?string $datum = null) {
     if ($datum && preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $datum)) {
       $losungen = $this->losungRepository->findByDatum(date_create($datum)->getTimestamp());
     } else
@@ -107,7 +102,7 @@ class LosungController extends \TYPO3\CmAjax\Controller\ApplicationController {
 
     $response = $this->responseFactory->createResponse();
 
-    if ($this->settings['format'] == 'json') {
+    if (!empty($this->settings['format']) && $this->settings['format'] == 'json') {
       $this->view->setVariablesToRender(['losung']);
       $response = $response->withHeader('Content-Type', 'application/json; charset=utf-8');
     } else {
@@ -123,72 +118,53 @@ class LosungController extends \TYPO3\CmAjax\Controller\ApplicationController {
     return $response->withBody($this->streamFactory->createStream($this->view->render()));
   }
 
-	/**
-	 * action new
-	 *
-	 * @param \CODEMASCHINE\CmLosungen\Domain\Model\Losung $newLosung
-	 * @IgnoreValidation("newLosung")
-	 * @return void
-	 */
-	public function newAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $newLosung = NULL) {
-		$this->view->assign('newLosung', $newLosung);
-	}
+  /**
+   * action new
+   *
+   */
+  public function newAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung = null) {
+    $this->moduleTemplate->assign('losung', $losung);
 
-	/**
-	 * action create
-	 *
-	 * @param \CODEMASCHINE\CmLosungen\Domain\Model\Losung $newLosung
-	 * @return void
-	 */
-	public function createAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $newLosung) {
-		$this->losungRepository->add($newLosung);
-		$this->addFlashMessage('Neue Losung angelegt.');
-		$this->redirect('list');
-	}
+    return $this->moduleTemplate->renderResponse();
+  }
 
-	/**
-	 * action edit
-	 *
-	 * @param \CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung
-	 * @return void
-	 */
-	public function editAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung) {
-	  $this->view->assign('losung', $losung);
-	  
-	  if ($this->isAjax())
-	    $this->view->render('ajaxEdit');
-	    
-	}
+  /**
+   * action create
+   *
+   */
+  public function createAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung) {
+    $this->losungRepository->add($losung);
+    $this->addFlashMessage('Neue Losung angelegt.');
+    return $this->redirect('list');
+  }
 
-	/**
-	 * action update
-	 *
-	 * @param \CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung
-	 * @return void
-	 */
-	public function updateAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung) {
-		$this->losungRepository->update($losung);
-		if ($this->isAjax()) {
-		  $this->view->assign('losung', $losung);
-		  $this->view->render('ajaxShow');
-		}
-		else {
-  		$this->addFlashMessage('Losung bearbeitet.');
-  		$this->redirect('list');
-		}
-	}
+  /**
+   * action edit
+   *
+   */
+  public function editAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung) {
+    $this->moduleTemplate->assign('losung', $losung);
 
-	/**
-	 * action delete
-	 *
-	 * @param \CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung
-	 * @return void
-	 */
-	public function deleteAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung) {
-		$this->losungRepository->remove($losung);
-		$this->addFlashMessage('Losung gelöscht.');
-		$this->redirect('list');
-	}
+    return $this->moduleTemplate->renderResponse();
+  }
 
+  /**
+   * action update
+   *
+   */
+  public function updateAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung) {
+    $this->losungRepository->update($losung);
+    $this->addFlashMessage('Losung bearbeitet.');
+    return $this->redirect('list');
+  }
+
+  /**
+   * action delete
+   *
+   */
+  public function deleteAction(\CODEMASCHINE\CmLosungen\Domain\Model\Losung $losung) {
+    $this->losungRepository->remove($losung);
+    $this->addFlashMessage('Losung gelöscht.');
+    return $this->redirect('list');
+  }
 }
-?>

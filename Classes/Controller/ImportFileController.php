@@ -1,4 +1,5 @@
 <?php
+
 namespace CODEMASCHINE\CmLosungen\Controller;
 
 /***************************************************************
@@ -25,12 +26,13 @@ namespace CODEMASCHINE\CmLosungen\Controller;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-use \TYPO3\CMS\Core\Utility\GeneralUtility as t3lib_div;
+
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use \DateTime;
 use CODEMASCHINE\CmLosungen\Domain\Model\Losung;
 use TYPO3\CMS\Core\Utility\File\BasicFileUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
-use TYPO3\CMS\Extbase\Annotation\Inject;
+use CODEMASCHINE\CmLosungen\Domain\Repository\LosungRepository;
 
 /**
  *
@@ -39,102 +41,95 @@ use TYPO3\CMS\Extbase\Annotation\Inject;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class ImportFileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class ImportFileController extends ActionController {
 
-	/**
-	 * losungRepository
-	 *
-	 * @var \CODEMASCHINE\CmLosungen\Domain\Repository\LosungRepository
-	 * @Inject
-	 */
-	public $losungRepository;
+  public function __construct(
+    private readonly LosungRepository $losungRepository
+  ) {}
 
-	/**
-	 * action new
-	 *
-	 * @param \CODEMASCHINE\CmLosungen\Domain\Model\ImportFile $importFile
-	 * @IgnoreValidation("newImportFile")
-	 * @return void
-	 */
-	public function newAction(\CODEMASCHINE\CmLosungen\Domain\Model\ImportFile $importFile = NULL) {
-		$this->view->assign('importFile', $importFile);
-	}
+  /**
+   * action new
+   *
+   */
+  public function newAction() {
+    $importFile = new \CODEMASCHINE\CmLosungen\Domain\Model\ImportFile();
+    $this->moduleTemplate->assign('importFile', $importFile);
 
-	/**
-	 * action create
-	 *
-	 * @param \CODEMASCHINE\CmLosungen\Domain\Model\ImportFile $importFile
-	 * @return void
-	 */
-	public function createAction(\CODEMASCHINE\CmLosungen\Domain\Model\ImportFile $importFile) {
-	  $filename = $this->saveFile($importFile);
-	  $xml = simplexml_load_file($filename);
-	   
-	  $existingLosungen = $this->losungRepository->findAll();
-	  $existingLosungenHash = array();
-	  
-	  foreach ($existingLosungen as $l) {
-	    $existingLosungenHash[(string) $l->getDatum()->getTimestamp()] = $l;
-	  }
-	  
-	  foreach ($xml->Losungen as $l) {
-	    
-	    $datum = new Datetime($l->Datum);
-	    if (isset($existingLosungenHash[$datum->getTimestamp()]))
-	      $losung = $existingLosungenHash[$datum->getTimestamp()];
-	    else {
-	      $losung = new Losung();
-	      $losung->setDatum($datum);
-	    }
-	    $losung->setWtag(strval($l->Wtag));  // this is still an object and must be cast to string, otherwise an empty value is saved to database!!!
-	    $losung->setSonntag(strval($l->Sonntag));  // --> same as above!!
-	    $losung->setLosungstext(str_replace('/', '', $l->Losungstext));
-	    $losung->setLosungsvers(strval($l->Losungsvers));  // --> same as above!!
-	    
-	    $losung->setLehrtext(str_replace('/', '', $l->Lehrtext));
-	    $losung->setLehrvers(strval($l->Lehrtextvers));  // --> same as above!!
-	    
-	    if ($losung->getUid())
-	      $this->losungRepository->update($losung);
-	    else
-	      $this->losungRepository->add($losung);
-	    
-	  }
-	  
-	  
-		
-		$this->addFlashMessage('XML-Losungen importiert.');
-		$this->redirect('list', 'Losung');
-	}
-	
-	
-	/**
-	 * Helper for upload functions
-	 *
-	 */
-	protected function saveFile(\CODEMASCHINE\CmLosungen\Domain\Model\ImportFile $importFile) {
-	  if (is_array($_FILES)) {
-	    foreach ($_FILES as $formName => $file) {
-	      if ($file['name']['importFile']['src']) {
-	        //t3lib_div::devLog("Los gehts: ".$_FILES['tx_vidary_web_vidarytxvidarym1']['name']['advertisement']['imgFilename'], "vidary");
-	        $basicFileFunctions = new BasicFileUtility();
-	
-	        if (!file_exists(t3lib_div::getFileAbsFileName('uploads/tx_cmlosungen')))
-	          mkdir(t3lib_div::getFileAbsFileName('uploads/tx_cmlosungen'));
-	
-	        $fileName = $basicFileFunctions->getUniqueName(
-	            $file['name']['importFile']['src'],
-	            t3lib_div::getFileAbsFileName('uploads/tx_cmlosungen/'));
-	
-	        t3lib_div::upload_copy_move(
-	        $file['tmp_name']['importFile']['src'],
-	        $fileName);
-	
-	        return $fileName;
-	      }
-	    }
-	  }
-	}
+    return $this->moduleTemplate->renderResponse();
+  }
 
+  /**
+   * action create
+   *
+   * @return void
+   */
+  public function createAction() {
+    $filename = $this->saveFile();
+    $xml = simplexml_load_file($filename);
+
+    $existingLosungen = $this->losungRepository->findAll();
+    $existingLosungenHash = array();
+
+    foreach ($existingLosungen as $l) {
+      $existingLosungenHash[(string) $l->getDatum()->getTimestamp()] = $l;
+    }
+
+    foreach ($xml->Losungen as $l) {
+
+      $datum = new Datetime($l->Datum);
+      if (isset($existingLosungenHash[$datum->getTimestamp()]))
+        $losung = $existingLosungenHash[$datum->getTimestamp()];
+      else {
+        $losung = new Losung();
+        $losung->setDatum($datum);
+      }
+      $losung->setWtag(strval($l->Wtag));  // this is still an object and must be cast to string, otherwise an empty value is saved to database!!!
+      $losung->setSonntag(strval($l->Sonntag));  // --> same as above!!
+      $losung->setLosungstext(str_replace('/', '', $l->Losungstext));
+      $losung->setLosungsvers(strval($l->Losungsvers));  // --> same as above!!
+
+      $losung->setLehrtext(str_replace('/', '', $l->Lehrtext));
+      $losung->setLehrvers(strval($l->Lehrtextvers));  // --> same as above!!
+
+      if ($losung->getUid())
+        $this->losungRepository->update($losung);
+      else
+        $this->losungRepository->add($losung);
+    }
+
+
+
+    $this->addFlashMessage('XML-Losungen importiert.');
+    return $this->redirect('list', 'Losung');
+  }
+
+
+  /**
+   * Helper for upload functions
+   *
+   */
+  protected function saveFile() {
+    if (is_array($_FILES)) {
+      foreach ($_FILES as $formName => $file) {
+        if ($file['name']['src']) {
+          $basicFileFunctions = new BasicFileUtility();
+
+          if (!file_exists(GeneralUtility::getFileAbsFileName('uploads/tx_cmlosungen')))
+            mkdir(GeneralUtility::getFileAbsFileName('uploads/tx_cmlosungen'));
+
+          $fileName = $basicFileFunctions->getUniqueName(
+            $file['name']['src'],
+            GeneralUtility::getFileAbsFileName('uploads/tx_cmlosungen/')
+          );
+
+          GeneralUtility::upload_copy_move(
+            $file['tmp_name']['src'],
+            $fileName
+          );
+
+          return $fileName;
+        }
+      }
+    }
+  }
 }
-?>

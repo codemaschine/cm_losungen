@@ -1,5 +1,9 @@
 <?php
+
 namespace CODEMASCHINE\CmLosungen\Domain\Repository;
+
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 
 /***************************************************************
  *  Copyright notice
@@ -34,11 +38,16 @@ namespace CODEMASCHINE\CmLosungen\Domain\Repository;
  *
  */
 class LosungRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-  
-  protected $defaultOrderings = array(
-      'datum' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
-  );
-  
 
+  protected $defaultOrderings = array(
+    'datum' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
+  );
+
+  public function initializeObject(): void {
+    $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
+    $querySettings->setRespectStoragePage(false);
+    $querySettings->setRespectSysLanguage(false);
+    // $querySettings->setIgnoreEnableFields(true);
+    $this->setDefaultQuerySettings($querySettings);
+  }
 }
-?>

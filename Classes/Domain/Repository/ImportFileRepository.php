@@ -1,4 +1,5 @@
 <?php
+
 namespace CODEMASCHINE\CmLosungen\Domain\Repository;
 
 /***************************************************************
@@ -34,6 +35,4 @@ namespace CODEMASCHINE\CmLosungen\Domain\Repository;
  *
  */
 class ImportFileRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-
 }
-?>

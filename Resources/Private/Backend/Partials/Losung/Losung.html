@@ -1,6 +1,3 @@
-{namespace ajax=TYPO3\CmAjax\ViewHelpers}
-
-
 <td>{losung.datum -> f:format.date(format: 'd.m.Y')}</td>
 <td>{losung.wtag}</td>
 <td>{losung.sonntag}</td>
@@ -16,6 +13,6 @@
 <td>{losung.oeabTranslation}</td>
 <td>
 <f:image id="l_loader_{losung.uid}" src="typo3conf/ext/cm_losungen/Resources/Public/Images/ajax-loader.gif" style="display:none;" width="16" height="16" />
-<ajax:link.action action="edit" arguments="{losung: losung}" title="Bearbeiten" update="#losung_{losung.uid}" loading="#l_loader_{losung.uid}" onclick="$('#l_loader_{losung.uid}').next().hide();"><core:icon size="small" identifier="actions-document-open" /></ajax:link.action>
+<f:link.action action="edit" arguments="{losung: losung}" title="Bearbeiten" update="#losung_{losung.uid}" loading="#l_loader_{losung.uid}" onclick="$('#l_loader_{losung.uid}').next().hide();"><core:icon size="small" identifier="actions-document-open" /></f:link.action>
 </td>
 <td><f:link.action action="delete" arguments="{losung: losung}" title="Löschen" onclick="return confirm('Wirklich löschen?');"><core:icon size="small" identifier="actions-edit-delete" /></f:link.action></td>

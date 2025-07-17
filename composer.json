@@ -1,0 +1,19 @@
+{
+  "name": "codemaschine/cm-losungen",
+  "type": "typo3-cms-extension",
+  "description": "",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "typo3/cms-core": "^11.5 || ^12.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "CODEMASCHINE\\CmLosungen\\": "Classes/"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "cm_losungen"
+    }
+  }
+}

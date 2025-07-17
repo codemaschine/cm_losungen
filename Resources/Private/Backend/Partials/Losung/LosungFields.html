@@ -8,55 +8,55 @@
   {losung.datum -> f:format.date(format: 'd.m.Y')}<br>
   
   <label for="wtag">
-      <f:translate key="tx_cmlosungen_domain_model_losung.wtag" />
+      <f:translate key="tx_cmlosungen_domain_model_losung.wtag" extensionName="CmLosungen" />
   </label><br />
       <f:form.textfield property="wtag" /><br />
   <label for="sonntag">
-      <f:translate key="tx_cmlosungen_domain_model_losung.sonntag" />
+      <f:translate key="tx_cmlosungen_domain_model_losung.sonntag" extensionName="CmLosungen" />
   </label><br />
       <f:form.textfield property="sonntag" /><br />
   <label for="losungstext">
-      <f:translate key="tx_cmlosungen_domain_model_losung.losungstext" /> <span class="required">(required)</span>
+      <f:translate key="tx_cmlosungen_domain_model_losung.losungstext" extensionName="CmLosungen" /> <span class="required">(required)</span>
   </label><br />
       <f:form.textarea property="losungstext" cols="40" rows="5" /><br />
   <label for="losungsvers">
-      <f:translate key="tx_cmlosungen_domain_model_losung.losungsvers" /> <span class="required">(required)</span>
+      <f:translate key="tx_cmlosungen_domain_model_losung.losungsvers" extensionName="CmLosungen" /> <span class="required">(required)</span>
   </label><br />
       <f:form.textfield property="losungsvers" /><br />
   <label for="lehrtext">
-      <f:translate key="tx_cmlosungen_domain_model_losung.lehrtext" />
+      <f:translate key="tx_cmlosungen_domain_model_losung.lehrtext" extensionName="CmLosungen" />
   </label><br />
       <f:form.textarea property="lehrtext" cols="40" rows="5" /><br />
   <label for="lehrvers">
-      <f:translate key="tx_cmlosungen_domain_model_losung.lehrvers" />
+      <f:translate key="tx_cmlosungen_domain_model_losung.lehrvers" extensionName="CmLosungen" />
   </label><br />
       <f:form.textfield property="lehrvers" /><br />
 </td>
 <td style="vertical-align: top; background-color: transparent;">
   <label for="btv_text">
-      <f:translate key="tx_cmlosungen_domain_model_losung.btv_text" />
+      <f:translate key="tx_cmlosungen_domain_model_losung.btv_text" extensionName="CmLosungen" />
   </label><br />
       <f:form.textarea property="btvText" cols="40" rows="5" /><br />
   <label for="btv_vers">
-      <f:translate key="tx_cmlosungen_domain_model_losung.btv_vers" />
+      <f:translate key="tx_cmlosungen_domain_model_losung.btv_vers" extensionName="CmLosungen" />
   </label><br />
       <f:form.textfield property="btvVers" /><br />
   <label for="btv_translation">
-      <f:translate key="tx_cmlosungen_domain_model_losung.btv_translation" />
+      <f:translate key="tx_cmlosungen_domain_model_losung.btv_translation" extensionName="CmLosungen" />
   </label><br />
       <f:form.textfield property="btvTranslation" /><br />
 </td>
 <td style="vertical-align: top; background-color: transparent;">
   <label for="oeab_text">
-      <f:translate key="tx_cmlosungen_domain_model_losung.oeab_text" />
+      <f:translate key="tx_cmlosungen_domain_model_losung.oeab_text" extensionName="CmLosungen" />
   </label><br />
       <f:form.textarea property="oeabText" cols="40" rows="5" /><br />
   <label for="oeab_vers">
-      <f:translate key="tx_cmlosungen_domain_model_losung.oeab_vers" />
+      <f:translate key="tx_cmlosungen_domain_model_losung.oeab_vers" extensionName="CmLosungen" />
   </label><br />
       <f:form.textfield property="oeabVers" /><br />
   <label for="oeab_translation">
-      <f:translate key="tx_cmlosungen_domain_model_losung.oeab_translation" />
+      <f:translate key="tx_cmlosungen_domain_model_losung.oeab_translation" extensionName="CmLosungen" />
   </label><br />
       <f:form.textfield property="oeabTranslation" /><br /><br /><br />
       
@@ -68,7 +68,7 @@
 </tr></table>
   <script type="text/javascript">
   
-  var datumLabel = "{f:translate(key: 'tx_cmlosungen_domain_model_losung.datum')}";
+  var datumLabel = "{f:translate(key: 'tx_cmlosungen_domain_model_losung.datum', extensionName: 'CmLosungen')}";
   /*
   var datumfield = new Ext.form.DateField({
       applyTo: 'datum', // <-- here you say where it must be rendered

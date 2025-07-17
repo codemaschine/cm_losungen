@@ -1,34 +1,37 @@
-<f:be.container includeCssFiles="{0: '{f:uri.resource(path:\'Stylesheets/be_styles.css\')}'}">
-	<div class="typo3-fullDoc">
-		<div id="typo3-docheader">
-			<div id="typo3-docheader-row1">
-				<div class="buttonsleft">
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
 
-				</div>
-				<div class="buttonsright">
-					<f:be.buttons.shortcut />
-				</div>
-			</div>
-			<div id="typo3-docheader-row2">
-				<div class="docheader-row2-left">
-					<f:be.buttons.csh />
-					<f:be.menus.actionMenu>
-						<f:be.menus.actionMenuItem label="Losungen" controller="" action="list" />
-						<f:be.menus.actionMenuItem label="XML-Losungen hochladen" action="new" controller="ImportFile" />
-					</f:be.menus.actionMenu>
-				</div>
-				<div class="docheader-row2-right">
-					<f:be.pagePath />
-					<f:be.pageInfo />
-				</div>
-			</div>
+<f:render section="Before" arguments="{_all}" optional="true" />
 
-		</div>
-		<div id="typo3-docbody">
-			<div id="typo3-inner-docbody">
-				<f:flashMessages />
-				<f:render section="content" />
-			</div>
-		</div>
-	</div>
-</f:be.container>
+<div class="module {moduleClass}" data-module-id="{moduleId}" data-module-name="{moduleName}">
+    <f:if condition="{formTag}">
+        <f:then>
+            <f:format.raw>{formTag}</f:format.raw>
+        </f:then>
+    </f:if>
+    <f:if condition="{docHeader.enabled}">
+        <f:render partial="DocHeader" arguments="{docHeader:docHeader}" />
+    </f:if>
+    <div class="module-body t3js-module-body">
+        <f:if condition="{uiBlock}">
+            <div id="t3js-ui-block" class="ui-block">
+                <core:icon identifier="spinner-circle" size="large" />
+            </div>
+        </f:if>
+        <f:flashMessages queueIdentifier="{flashMessageQueueIdentifier}" />
+
+        <f:render section="Content" arguments="{_all}" optional="true" />
+
+    </div>
+    <f:if condition="{formTag}">
+        <f:then>
+            </form>
+        </f:then>
+    </f:if>
+</div>
+
+<f:render section="After" arguments="{_all}" optional="true" />
+
+</html>
